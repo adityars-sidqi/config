@@ -8,13 +8,6 @@ spring:
               lower-case-service-id: true
               enabled: true
           routes:
-            - id: keycloak
-              uri: ${KEYCLOAK_URI:http://localhost:8080}
-              predicates:
-                - Path=/keycloak/**
-              filters:
-                - StripPrefix=1
-                - RewritePath=/keycloak/(?<path>.*), /${path}
             - id: authentication-service
               uri: ${AUTH_SERVICE_URI:http://localhost:8081}
               predicates:
