@@ -11,13 +11,15 @@ spring:
             - id: keycloak
               uri: http://keycloak:8080
               predicates:
-                Path=/keycloak/**
+                - Path=/keycloak/**
+                - RewritePath=/keycloak/(?<path>.*), /${path}
               filters:
-                RewritePath=/keycloak/(?<path>.*), /${path}
+                - StripPrefix=1
 
             - id: authentication-service
               uri: ${AUTH_SERVICE_URI:http://localhost:8081}
               predicates:
                 - Path=/api/auth/**
+                - RewritePath=/api/auth/(?<segment>.*), /${segment}
               filters:
                 - StripPrefix=1
