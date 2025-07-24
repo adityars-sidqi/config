@@ -9,7 +9,7 @@ spring:
               enabled: true
           routes:
             - id: keycloak
-              uri: http://localhost:8080
+              uri: ${KEYCLOAK_URI:http://localhost:8080}
               predicates:
                 - Path=/keycloak/**
               filters:
