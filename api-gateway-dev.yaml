@@ -21,4 +21,4 @@ spring:
                 - Path=/api/auth/**
               filters:
                 - StripPrefix=1
-                - RewritePath=/keycloak/(?<path>.*), /${path}
+                - RewritePath=/auth/(?<path>.*), /${path}
