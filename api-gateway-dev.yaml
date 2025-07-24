@@ -1,5 +1,10 @@
 spring:
+  application:
+    name: api-gateway
   cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI}
+      enabled: true
     gateway:
       server:
         webflux:
@@ -9,7 +14,7 @@ spring:
               enabled: true
           routes:
             - id: authentication-service
-              uri: ${AUTH_SERVICE_URI:http://localhost:8081}
+              uri: lb://authentication-service
               predicates:
                 - Path=/api/auth/**
               filters:
