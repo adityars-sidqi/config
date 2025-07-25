@@ -2,20 +2,17 @@ spring:
   application:
     name: api-gateway
   cloud:
-    config:
-      uri: ${CONFIG_SERVER_URI}
-      enabled: true
     gateway:
       server:
         webflux:
           discovery:
             locator:
-              lower-case-service-id: true
               enabled: true
+              lower-case-service-id: true
           routes:
             - id: authentication-service
               uri: lb://authentication-service
               predicates:
                 - Path=/api/auth/**
               filters:
-                - RewritePath=/api/auth/(?<path>.*), /${path}
+                - StripPrefix=2
