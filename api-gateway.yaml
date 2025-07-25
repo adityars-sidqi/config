@@ -15,4 +15,4 @@ spring:
               predicates:
                 - Path=/api/auth/**
               filters:
-                - StripPrefix=2
+                - RewritePath=/api/auth/(?<path>.*), /${path}
